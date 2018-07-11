@@ -91,9 +91,9 @@ async function create (dir, description, argv) {
       written.push(path.join(dir, 'node_modules'))
       var pkgs = [
         'choo',
-        'choo-service-worker',
         'sheetify',
-        'tachyons'
+        'ress',
+        'gr8'
       ]
       var msg = clrInstall(pkgs)
       print('Installing ' + msg + '…')
@@ -131,18 +131,6 @@ async function create (dir, description, argv) {
       lib.writeIndex(dir, done)
     },
     function (done) {
-      var filename = 'stores/clicks.js'
-      printFile(filename)
-      written.push(path.join(dir, filename))
-      lib.writeStore(dir, done)
-    },
-    function (done) {
-      var filename = 'sw.js'
-      printFile(filename)
-      written.push(path.join(dir, filename))
-      lib.writeServiceWorker(dir, done)
-    },
-    function (done) {
       var filename = 'views/main.js'
       printFile(filename)
       written.push(path.join(dir, filename))
@@ -159,6 +147,18 @@ async function create (dir, description, argv) {
       printFile(filename)
       written.push(path.join(dir, filename))
       lib.writeManifest(dir, description, done)
+    },
+    function (done) {
+      var filename = 'assets/css/base.css'
+      printFile(filename)
+      written.push(path.join(dir, filename))
+      lib.writeBaseCSS(dir, done)
+    },
+    function (done) {
+      var filename = 'assets/css/gr8.js'
+      printFile(filename)
+      written.push(path.join(dir, filename))
+      lib.writeGr8CSS(dir, done)
     },
     function (done) {
       var filename = 'assets/icon.png'
